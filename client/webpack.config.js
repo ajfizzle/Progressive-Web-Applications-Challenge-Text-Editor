@@ -1,4 +1,3 @@
-// webpack.config.js
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const path = require("path");
@@ -23,9 +22,9 @@ module.exports = {
     new WebpackPwaManifest({
       fingerprints: false,
       inject: true,
-      name: "UTA Text Editor",
+      name: "J.A.T.E",
       short_name: "Text Editor",
-      description: "Save Note Here",
+      description: "Just Another Text Editor",
       background_color: "#225ca3",
       theme_color: "#225ca3",
       start_url: "/",
@@ -68,6 +67,8 @@ module.exports = {
       directory: path.join(__dirname, "dist"),
     },
     compress: true,
-    port: 8081,
+    port: 3000,
+    hot: true,
+    liveReload: true,
   },
 };
