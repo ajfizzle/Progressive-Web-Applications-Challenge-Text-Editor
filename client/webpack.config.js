@@ -22,7 +22,7 @@ module.exports = {
     new WebpackPwaManifest({
       fingerprints: false,
       inject: true,
-      name: "J.A.T.E",
+      name: "UTA Text Editor",
       short_name: "Text Editor",
       description: "Just Another Text Editor",
       background_color: "#225ca3",
