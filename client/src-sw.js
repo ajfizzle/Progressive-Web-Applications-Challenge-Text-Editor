@@ -1,14 +1,17 @@
-const { offlineFallback, warmStrategyCache } = require('workbox-recipes');
-const { CacheFirst } = require('workbox-strategies');
-const { registerRoute } = require('workbox-routing');
-const { CacheableResponsePlugin } = require('workbox-cacheable-response');
-const { ExpirationPlugin } = require('workbox-expiration');
-const { precacheAndRoute } = require('workbox-precaching/precacheAndRoute');
+// src-sw.js
+import { precacheAndRoute } from "workbox-precaching";
+import { registerRoute } from "workbox-routing";
+import { CacheFirst, StaleWhileRevalidate } from "workbox-strategies";
+import { CacheableResponsePlugin } from "workbox-cacheable-response";
+import { ExpirationPlugin } from "workbox-expiration";
+import { offlineFallback } from "workbox-recipes";
 
+// Precaches and routes the resources listed in the WB_MANIFEST
 precacheAndRoute(self.__WB_MANIFEST);
 
+// Defines the caching strategy for page navigation requests
 const pageCache = new CacheFirst({
-  cacheName: 'page-cache',
+  cacheName: "page-cache",
   plugins: [
     new CacheableResponsePlugin({
       statuses: [0, 200],
@@ -19,12 +22,24 @@ const pageCache = new CacheFirst({
   ],
 });
 
-warmStrategyCache({
-  urls: ['/index.html', '/'],
-  strategy: pageCache,
-});
+// Warms up the cache with specified URLs
+registerRoute(
+  ({ request }) => request.mode === "navigate",
+  ({ event }) => pageCache.handle({ event })
+);
 
-registerRoute(({ request }) => request.mode === 'navigate', pageCache);
+// Implements asset caching for styles, scripts, and workers
+registerRoute(
+  ({ request }) => ["style", "script", "worker"].includes(request.destination),
+  new StaleWhileRevalidate({
+    cacheName: "asset-cache",
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+    ],
+  })
+);
 
-// TODO: Implement asset caching
-registerRoute();
+// Fallback strategy for offline support
+offlineFallback();
