@@ -25,6 +25,14 @@ This is a Progressive Web Application (PWA) that functions as a text editor. It 
 
 ## Features
 
+- Create and edit text notes
+- Save notes automatically using IndexedDB
+- Offline functionality
+- Installable as a PWA
+- Service worker for caching static assets
+- Webpack for bundling JavaScript files
+- Babel for using next-gen JavaScript
+
 ## User Story
 
 AS A developer,
@@ -50,13 +58,19 @@ SO THAT I can reliably retrieve them for later use.
 
 1. Clone the repository:
    ```bash
-   git clone <using url in Contact section below>
+   git clone git@github.com:ajfizzle/Progressive-Web-Applications-Challenge-Text-Editor.git
    cd client directory
    ```
 2. Install dependencies:
+
    ```bash
    npm install
+   npm install style-loader css-loader --save-dev
+   npm install --save-dev html-webpack-plugin webpack-pwa-manifest workbox-webpack-plugin
+   npm install --save-dev style-loader css-loader babel-loader @babel/core @babel/preset-env @babel/plugin-proposal-object-rest-spread @babel/transform-runtime
+
    ```
+
 3. Start the application:
    ```bash
    npm run dev
@@ -64,7 +78,15 @@ SO THAT I can reliably retrieve them for later use.
 
 ## Deployment
 
+This application is deployed on Render. You can visit the live application [here](live-url).
+
 ## Usage
+
+- Open the application in your browser.
+- Type your notes or code snippets in the text editor.
+- The content is saved automatically when you click off the window or lose focus.
+- You can install the application by clicking the Install button.
+- Access your notes even when offline.
 
 ## Technologies Used
 
