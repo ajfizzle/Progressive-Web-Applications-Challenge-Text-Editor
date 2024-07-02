@@ -78,7 +78,7 @@ SO THAT I can reliably retrieve them for later use.
 
 ## Deployment
 
-This application is deployed on Render. You can visit the live application [here](live-url).
+This application will be deployed on Render. You can visit the live application [here](https://texteditor-pwa-8bd1badc9170.herokuapp.com/). (later date)
 
 ## Usage
 
