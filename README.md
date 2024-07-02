@@ -101,6 +101,8 @@ This application will be deployed on Render. You can visit the live application 
 
 ## Preview / Screenshot / Walkthrough Video
 
+<video controls src="Progressive-Web-Applications-Challenge-Text-Editor.mp4" title="Title"></video>
+
 ## Contact
 
 For more projects and information about the developer, please visit:
