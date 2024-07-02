@@ -4,7 +4,7 @@
     "dev": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "start": "node server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "2U",
   "license": "UNLICENSED",
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "code-mirror-themes": "^1.0.0",
-    "idb": "^8.0.0"
+    "idb": "^8.0.0",
+    "jest": "^29.7.0"
   }
 }
