@@ -1,51 +1,33 @@
-const butInstall = document.getElementById("buttonInstall");
+let deferredPrompt; // Holds on to the event
 
-// Logic for installing the PWA
-// Event handler for the `beforeinstallprompt` event
-window.addEventListener("beforeinstallprompt", (event) => {
-  // Store the event
-  window.deferredPrompt = event;
+// This event fires when the app can be added to the home screen
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault(); // Prevent the mini-infobar from appearing on mobile
+  deferredPrompt = e; // Stash the event so it can be triggered later.
+  console.log("beforeinstallprompt event was received.");
 
-  // Show the install button
-  butInstall.classList.remove("hidden");
-});
-
-// Event handler for the install button click
-butInstall.addEventListener("click", async () => {
-  const promptEvent = window.deferredPrompt;
-
-  if (!promptEvent) {
-    return;
+  // Show the install button directly in the event listener.
+  const installButton = document.getElementById("buttonInstall");
+  if (installButton) {
+    installButton.style.display = "block";
+    installButton.addEventListener("click", () => {
+      // Show the install prompt immediately on user interaction
+      if (deferredPrompt) {
+        deferredPrompt.prompt(); // Show the prompt
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === "accepted") {
+            console.log("User accepted the install prompt");
+          } else {
+            console.log("User dismissed the install prompt");
+          }
+          deferredPrompt = null; // Reset the deferred prompt variable
+          installButton.style.display = "none"; // Hide the button after interaction
+        });
+      } else {
+        console.log("Deferred prompt is not available.");
+      }
+    });
+  } else {
+    console.error("Install button not found.");
   }
-
-  try {
-    // Show the install prompt
-    await promptEvent.prompt();
-
-    // Wait for the user to respond to the prompt
-    const userChoice = await promptEvent.userChoice;
-
-    if (userChoice.outcome === "accepted") {
-      console.log("User accepted the install prompt");
-    } else {
-      console.log("User dismissed the install prompt");
-    }
-  } catch (err) {
-    console.error("Failed to prompt the user for installation:", err);
-  } finally {
-    // Reset the deferred prompt variable
-    window.deferredPrompt = null;
-
-    // Hide the install button
-    butInstall.classList.add("hidden");
-  }
-});
-
-// Event handler for the `appinstalled` event
-window.addEventListener("appinstalled", (event) => {
-  // Clear the deferred prompt
-  window.deferredPrompt = null;
-
-  // Optionally, update your UI or analytics here
-  console.log("App was installed");
 });

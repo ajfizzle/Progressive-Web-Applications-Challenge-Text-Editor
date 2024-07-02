@@ -1,10 +1,10 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const path = require("path");
-const { GenerateSW } = require("workbox-webpack-plugin");
+const { InjectManifest } = require("workbox-webpack-plugin");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: {
     main: "./src/js/index.js",
     install: "./src/js/install.js",
@@ -12,6 +12,7 @@ module.exports = {
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
+    clean: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -24,7 +25,7 @@ module.exports = {
       inject: true,
       name: "UTA Text Editor",
       short_name: "Text Editor",
-      description: "Just Another Text Editor",
+      description: "Save Note Here",
       background_color: "#225ca3",
       theme_color: "#225ca3",
       start_url: "/",
@@ -38,9 +39,8 @@ module.exports = {
         },
       ],
     }),
-    new GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true,
+    new InjectManifest({
+      swSrc: "./src-sw.js",
       swDest: "src-sw.js",
     }),
   ],
@@ -61,14 +61,5 @@ module.exports = {
         },
       },
     ],
-  },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, "dist"),
-    },
-    compress: true,
-    port: 3000,
-    hot: true,
-    liveReload: true,
   },
 };

@@ -21,15 +21,21 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.2/theme/monokai.min.css"
     />
-
+    <link rel="manifest" href="/manifest.json" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <nav id="navbar">
       <div class="nav-btn">
-        <a class="btn btn-sm btn-dark" id="buttonInstall" role="button"
-          >Install JATE</a
+        <!-- <a class="btn btn-sm btn-dark" id="buttonInstall" role="button" >Install JATE</a>
+        <button id="buttonInstall" style="display: none">Install JATE</button> -->
+        <button
+          class="btn btn-sm btn-dark"
+          id="buttonInstall"
+          style="display: block"
         >
+          Install JATE
+        </button>
       </div>
       <h1>Just Another Text Editor</h1>
 
