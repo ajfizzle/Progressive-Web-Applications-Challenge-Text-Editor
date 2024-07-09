@@ -109,6 +109,7 @@ For more projects and information about the developer, please visit:
 
 - https://ajfizzle.github.io/Progressive-Web-Applications-Challenge-Text-Editor
 - https://github.com/ajfizzle/Progressive-Web-Applications-Challenge-Text-Editor
+- https://pwatexteditor.netlify.app/
 
 ## References:
 
