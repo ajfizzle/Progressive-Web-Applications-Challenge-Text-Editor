@@ -7,9 +7,11 @@
     "start:dev": "concurrently \"npm run server\" \"npm run client\"",
     "start": "node server/server.js",
     "server": "nodemon server/server.js",
-    "build": "cd client && npm run build",
+    "build": "npm run client:install && npm run client:build", 
     "install": "cd server && npm i && cd ../client && npm i",
-    "client": "cd client && npm start"
+    "client": "cd client && npm start",
+    "client:install": "cd client && npm install", 
+    "client:build": "cd client && npm run build" 
   },
   "keywords": [],
   "author": "",
