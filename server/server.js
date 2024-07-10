@@ -10,6 +10,8 @@ app.use(express.json());
 
 require("./routes/htmlRoutes")(app);
 
+console.log(path.join(__dirname, "..", "client", "dist", "index.html"));
+
 // Fallback route to serve index.html
 app.get("*", (req, res) => {
   res.sendFile("index.html", { root });
