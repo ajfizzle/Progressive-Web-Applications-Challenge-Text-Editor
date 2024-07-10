@@ -66,6 +66,7 @@ SO THAT I can reliably retrieve them for later use.
    ```bash
    npm install
    npm install style-loader css-loader --save-dev
+   npm install concurrently nodemon --save-dev
    npm install --save-dev html-webpack-plugin webpack-pwa-manifest workbox-webpack-plugin
    npm install --save-dev style-loader css-loader babel-loader @babel/core @babel/preset-env @babel/plugin-proposal-object-rest-spread @babel/transform-runtime
 
