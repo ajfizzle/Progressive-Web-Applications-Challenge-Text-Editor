@@ -1,9 +1,10 @@
 {
-  "name": "Progressive-Web-Applications-Challenge-Text-Editor",
+  "name": "Progressive-Web-Applications-Challenge-Text-Editor-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server part of the Progressive Web Applications Challenge Text Editor.",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "server": "nodemon server.js --ignore client"
   },
   "keywords": [],
