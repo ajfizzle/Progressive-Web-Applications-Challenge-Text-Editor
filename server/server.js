@@ -10,11 +10,12 @@ app.use(express.json());
 
 require("./routes/htmlRoutes")(app);
 
-console.log(path.join(__dirname, "..", "client", "dist", "index.html"));
+console.log(`Static files served from: ${root}`);
 
-// Fallback route to serve index.html
 app.get("*", (req, res) => {
   res.sendFile("index.html", { root });
 });
 
-app.listen(PORT, () => console.log(`Now listening on port: ${PORT}`));
+app.listen(PORT, "0.0.0.0", () =>
+  console.log(`Server listening on port: ${PORT}`)
+);
