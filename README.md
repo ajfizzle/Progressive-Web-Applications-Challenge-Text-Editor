@@ -1,6 +1,6 @@
 # Progressive-Web-Applications-Challenge-Text-Editor
 
-Module 19 Challenge
+Module 19 Challenge:
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
