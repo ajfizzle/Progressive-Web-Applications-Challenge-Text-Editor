@@ -34,14 +34,14 @@ if (!editor) {
 // }
 
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/src-sw.js")
-      .then((registration) => {
-        console.log("SW registered: ", registration);
-      })
-      .catch((registrationError) => {
-        console.log("SW registration failed: ", registrationError);
-      });
-  });
+  navigator.serviceWorker
+    .getRegistrations()
+    .then(function (registrations) {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    })
+    .catch(function (error) {
+      console.log("Service Worker unregistration failed: ", error);
+    });
 }

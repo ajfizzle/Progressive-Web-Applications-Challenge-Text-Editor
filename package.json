@@ -7,9 +7,13 @@
     "start:dev": "concurrently \"npm run server\" \"npm run client\"",
     "start": "node server/server.js",
     "server": "nodemon server/server.js",
-    "build": "cd client && npm run build",
-    "install": "cd server && npm i && cd ../client && npm i",
-    "client": "cd client && npm start"
+    "build": "npm run build:client",
+    "build:client": "cd client && npm install && npm run build",
+    "install": "npm run install:server && npm run install:client",
+    "install:server": "cd server && npm install",
+    "install:client": "cd client && npm install",
+    "client": "cd client && npm start",
+    "prestart": "npm run build:client"
   },
   "keywords": [],
   "author": "",
