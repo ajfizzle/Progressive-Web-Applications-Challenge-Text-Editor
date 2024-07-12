@@ -26,9 +26,14 @@ if (!editor) {
 
 /// Check if service workers are supported
 if ("serviceWorker" in navigator) {
-  // Register workbox service worker
-  const workboxSW = new Workbox("/src-sw.js"); // Ensure the path is correct
-  workboxSW.register();
-} else {
-  console.error("Service workers are not supported in this browser.");
+  navigator.serviceWorker
+    .getRegistrations()
+    .then(function (registrations) {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    })
+    .catch(function (error) {
+      console.log("Service Worker unregistration failed: ", error);
+    });
 }

@@ -16,7 +16,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./index.html",
+      template: "./src/index.html", // Ensure this path is correct
       filename: "index.html",
       chunks: ["main"],
     }),
